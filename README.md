@@ -1,0 +1,2 @@
+alx-higher_level_programming
+High-level programming languages are designed to be easier for humans to read and write. They are abstraction layers that simplify the complex process of instructing a computer. Unlike low-level languages, which are more closely related to the hardware and are harder to read and write, high-level languages are closer to human language and more user-friendly. Here are some key aspects of high-level languages:
