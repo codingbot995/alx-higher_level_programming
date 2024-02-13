@@ -1,8 +1,7 @@
 #!/usr/bin/node
-
-const firstArg = process.argv[2];
-if (firstArg){
-console.log(firstArg);
-}else{
-console.log('no arguments");
+const first = process.argv[2];
+if (first) {
+  console.log(first);
+} else {
+  console.log('No argument');
 }
