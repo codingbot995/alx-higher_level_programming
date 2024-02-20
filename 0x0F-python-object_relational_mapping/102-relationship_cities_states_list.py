@@ -1,24 +1,27 @@
 #!/usr/bin/python3
-"""
-Lists all City objects from the database hbtn_0e_101_usa
-"""
+"""a script that lists all City objects
+from the database hbtn_0e_101_usa"""
 import sys
-from relationship_state import Base, State
+from sqlalchemy import create_engine, asc
+from relationship_state import State
 from relationship_city import City
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+if __name__ == "__main__":
+    user = sys.argv[1]
+    pwd = sys.argv[2]
+    dbname = sys.argv[3]
 
-if __name__ == '__main__':
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.
-                           format(sys.argv[1], sys.argv[2], sys.argv[3]),
-                           pool_pre_ping=True)
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost:{}/{}"
+                           .format(user, pwd, 3306, dbname))
 
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).join(City).order_by(City.id).all()
+    data = session.query(City, State).filter(
+        State.id == City.state_id).order_by(asc(City.id))
 
-    for state in states:
-        for city in state.cities:
-            print("{}: {} -> {}".format(city.id, city.name, state.name))
+    for city, state in data:
+        print("{}: {} -> {}".format(city.id, city.name, state.name))
+
+    session.close()

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-"""
-Lists all State objects and corresponding City objects contained in the DB
-"""
+"""a script that lists all State objects,
+and corresponding City objects,
+contained in the database hbtn_0e_101_usa"""
 import sys
 from sqlalchemy import create_engine, asc
 from relationship_state import State
